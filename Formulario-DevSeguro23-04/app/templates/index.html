@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulário de Cadastro</title>
+</head>
+<body>
+  <h1>Cadastro</h1>
+  <form id="formCadastro" method="POST">
+    <label>Nome: <input type="text" name="nome" required></label><br>
+    <label>Email: <input type="email" name="email" required></label><br>
+    <label>Senha: <input type="password" name="senha" required></label><br>
+    <button type="submit">Cadastrar</button>
+  </form>
+
+  <script>
+    document.getElementById("formCadastro").addEventListener("submit", function(event) {
+      const nome = document.querySelector('[name="nome"]').value;
+      const email = document.querySelector('[name="email"]').value;
+      const senha = document.querySelector('[name="senha"]').value;
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const senhaRegex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+
+      if (nome.length < 3) {
+        alert("Nome deve ter pelo menos 3 caracteres.");
+        event.preventDefault();
+      } else if (!emailRegex.test(email)) {
+        alert("E-mail inválido.");
+        event.preventDefault();
+      } else if (!senhaRegex.test(senha)) {
+        alert("A senha deve ter no mínimo 8 caracteres, uma letra maiúscula e um número.");
+        event.preventDefault();
+      }
+    });
+  </script>
+</body>
+</html>
